@@ -12,5 +12,5 @@ foreach($private_dependencies as $private_dependency) {
   unset($composer_json['require'][$private_dependency]);
 }
 
-file_put_contents('composer.json', json_encode($composer_json, JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES));
+file_put_contents('composer.json', json_encode($composer_json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 ?>

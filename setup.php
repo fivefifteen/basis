@@ -9,7 +9,7 @@ $private_dependencies = array(
 $composer_json = json_decode(file_get_contents('composer.json'), true);
 
 foreach($private_dependencies as $private_dependency) {
-  unset($composer_jsonp['require'][$private_dependency]);
+  unset($composer_json['require'][$private_dependency]);
 }
 
 file_put_contents('composer.json', json_encode($composer_json, JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES));

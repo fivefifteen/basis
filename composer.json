@@ -71,7 +71,7 @@
     ],
     "encrypt:auth": "sops -e auth.json > auth.encrypted.json",
     "encrypt:deploy": "sops --input-type binary -e deploy.yml > deploy.encrypted.yml",
-    "post-create-project-cmd": "php setup.php",
+    "pre-create-project-cmd": "php setup.php",
     "setup": [
       "@theme:setup"
     ],

@@ -6,7 +6,7 @@ $private_dependencies = array(
   'wpengine/advanced-custom-fields-pro'
 );
 
-$composer_json = json_decode(file_get_contents('composer.json'));
+$composer_json = json_decode(file_get_contents('composer.json', true));
 
 foreach($private_dependencies as $private_dependency) {
   unset($composer_json[$private_dependency]);

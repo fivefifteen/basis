@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: (auth|deploy)(.encrypted)?\.(json|yml)$
+    age: {{BASIS_AGE_KEY}}

@@ -1,0 +1,53 @@
+name: {{BASIS_PROJECT_SLUG}}
+recipe: lamp
+config:
+  php: '{{BASIS_PHP_VERSION}}' # CONFIG: PHP VERSION
+  composer_version: '{{BASIS_COMPOSER_VERSION}}' # CONFIG: COMPOSER VERSION
+  database: mysql:{{BASIS_MYSQL_VERSION}} # CONFIG: MYSQL VERSION
+services:
+  appserver:
+    overrides:
+      environment:
+        SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
+      volumes:
+        - type: bind
+          # Linux users: add 'export LANDO_SSH_AUTH_SOCK="${SSH_AUTH_SOCK}"' at the end of your ~/.bashrc
+          source: "${LANDO_SSH_AUTH_SOCK:-/run/host-services/ssh-auth.sock}"
+          target: /run/host-services/ssh-auth.sock
+    build_as_root:
+      # Fix ssh-auth.sock permissions
+      - chown www-data:www-data /run/host-services/ssh-auth.sock
+      - chmod g+w /run/host-services/ssh-auth.sock
+    build:
+      # Install Composer dependencies and run the post-install/build scripts
+      - composer install --working-dir=/app && composer run setup
+  database:
+    creds:
+      database: {{BASIS_LOCAL_DATABASE_NAME}} # CONFIG: DATABASE NAME
+events:
+  post-start:
+    - appserver: test -e ~/.ssh/config || printf 'Host *\n  AddKeysToAgent yes\n' > ~/.ssh/config
+  post-destroy:
+    - git clean -Xdff
+tooling:
+  build:
+    service: appserver
+    description: Compiles/minifies SCSS and JS files
+    cmd: composer build
+  composer:
+    service: appserver
+    description: Runs composer commands
+    cmd: composer
+  dep:
+    service: appserver
+    description: Runs Deployer commands (Simply run `lando dep` for a list of available commands)
+    cmd: vendor/bin/dep -vvv
+  ssh-fix:
+    service: appserver
+    description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.
+    cmd: "/bin/chgrp www-data /run/host-services/ssh-auth.sock && /bin/chmod g+w /run/host-services/ssh-auth.sock"
+    user: root
+  wp:
+    service: appserver
+    description: Runs WP-CLI Commands
+    cmd: vendor/bin/wp

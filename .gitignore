@@ -1,0 +1,58 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+*:Zone.Identifier
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+/db_exports
+
+# Development
+/.tmp
+/auth.json
+/composer.lock
+/deploy.yml
+/vendor
+
+# Wordpress files
+/content/*/*
+!/content/mu-plugins/*.php
+!/content/themes/*
+/wordpress
+wp-config.php
+
+# Compiled files
+/robots.txt

@@ -1,0 +1,12 @@
+{
+	"http-basic": {
+		"plugins.fivefifteen.com": {
+			"username": "{{BASIS_FIVEFIFTEEN_API_KEY}}",
+			"password": "{{BASIS_PRODUCTION_URL}}"
+		},
+		"connect.advancedcustomfields.com": {
+			"username": "{{BASIS_ACF_API_KEY}}",
+			"password": "{{BASIS_PRODUCTION_URL}}"
+		}
+	}
+}

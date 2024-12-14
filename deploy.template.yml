@@ -1,0 +1,83 @@
+config:
+  application: {{BASIS_PROJECT_SLUG}}
+  repository: {{BASIS_PROJECT_REPO}}
+  current_path: /app
+  deploy_path: {{BASIS_DEPLOY_PATH}}
+  bin/composer: /usr/bin/composer
+  use_atomic_symlink: false
+  db/credentials:
+    host: database
+    name: {{BASIS_LOCAL_DATABASE_NAME}}
+    user: root
+    pass: ''
+  templates/files:
+    - robots.txt.staging.mustache
+    - robots.txt.mustache
+  wp/home: https://{{application}}.lndo.site
+  wp/siteurl: '{{wp/home}}/wordpress'
+  wp/content_dir: content
+  wp/config/require:
+    - '{{release_or_current_path}}/vendor/autoload.php'
+  wp/config/constants: &default_wp_config_constants
+    WP_ENVIRONMENT_TYPE: development
+    WP_AUTO_UPDATE_CORE: false
+    WP_DEBUG: true
+    WP_DEBUG_DISPLAY: false
+    WP_DEBUG_LOG: true
+    SAVEQUERIES: true
+    SCRIPT_DEBUG: true
+    DISALLOW_FILE_EDIT: true
+    WPMS_ON: true
+    WPMS_DO_NOT_SEND: true
+    WPMS_MAIL_FROM: {{BASIS_EMAIL_FROM}}
+    WPMS_MAIL_FROM_FORCE: true
+    WPMS_MAIL_FROM_NAME: '{{BASIS_PROJECT_NAME}}'
+    WPMS_MAIL_FROM_NAME_FORCE: true
+    WPMS_MAILER: sendgrid
+    WPMS_SENDGRID_API_KEY: {{BASIS_SENDGRID_API_KEY}}
+    WPMS_SENDGRID_DOMAIN: {{BASIS_PRODUCTION_DOMAIN}}
+    WPMS_LOGS_ENABLED: true
+    WPMS_LOGS_LOG_EMAIL_CONTENT: true
+    WPMS_DOMAIN_WHITELIST:
+      - {{BASIS_EMAIL_WHITELIST_DOMAIN}}
+    WPMS_EMAIL_WHITELIST: []
+
+hosts:
+  staging:
+    hostname: {{BASIS_STAGING_IP}}
+    remote_user: {{BASIS_STAGING_USER}}
+    branch: {{BASIS_STAGING_BRANCH}}
+    current_path: {{BASIS_PUBLIC_PATH}}
+    db/credentials:
+      host: {{BASIS_STAGING_DATABASE_HOST}}
+      name: {{BASIS_STAGING_DATABASE_NAME}}
+      user: {{BASIS_STAGING_DATABASE_USER}}
+      pass: {{BASIS_STAGING_DATABASE_PASS}}
+    wp/home: {{BASIS_STAGING_URL}}
+    wp/config/constants:
+      <<: *default_wp_config_constants
+      WP_ENVIRONMENT_TYPE: staging
+
+  production:
+    hostname: {{BASIS_PRODUCTION_IP}}
+    remote_user: {{BASIS_PRODUCTION_USER}}
+    branch: {{BASIS_PRODUCTION_BRANCH}}
+    current_path: {{BASIS_PUBLIC_PATH}}
+    db/credentials:
+      host: {{BASIS_PRODUCTION_DATABASE_HOST}}
+      name: {{BASIS_PRODUCTION_DATABASE_NAME}}
+      user: {{BASIS_PRODUCTION_DATABASE_USER}}
+      pass: {{BASIS_PRODUCTION_DATABASE_PASS}}
+    wp/home: {{BASIS_PRODUCTION_URL}}
+    wp/config/constants:
+      <<: *default_wp_config_constants
+      WP_ENVIRONMENT_TYPE: production
+      WP_DEBUG: false
+      WP_DEBUG_DISPLAY: false
+      WP_DEBUG_LOG: false
+      SAVEQUERIES: false
+      SCRIPT_DEBUG: false
+      WPMS_DO_NOT_SEND: false
+      WPMS_LOGS_ENABLED: false
+      WPMS_LOGS_LOG_EMAIL_CONTENT: false
+      GOOGLE_ANALYTICS_ID: {{BASIS_GOOGLE_ANALYTICS_ID}}

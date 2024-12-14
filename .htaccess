@@ -1,0 +1,38 @@
+# ----------------------------------------------------------------------
+# WordPress security
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule .htaccess - [nocase,forbidden,last]
+RewriteRule autodiscover.xml - [nocase,forbidden,last]
+RewriteRule xmlrpc.php - [nocase,forbidden,last]
+RewriteRule wp-config.php - [nocase,forbidden,last]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(wp-)?content\/(.*?) - [nocase,redirect=404,last]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^wordpress\/(.*?) - [nocase,redirect=404,last]
+</IfModule>
+
+
+# ----------------------------------------------------------------------
+# WordPress generated rules
+# ----------------------------------------------------------------------
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

@@ -1,0 +1,101 @@
+{
+  "name": "fivefifteen/basis",
+  "version": "0.0.1",
+  "description": "A WordPress boilerplate. Get a local dockerized WordPress project up and running complete with secrets encryption, dependency management/compilation, and more by running a single command.",
+  "authors": [
+    {
+      "name": "Five Fifteen",
+      "email": "hello@fivefifteen.com",
+      "homepage": "https://fivefifteen.com"
+    },
+    {
+      "name": "Kodie Grantham",
+      "email": "kodie.grantham@gmail.com",
+      "homepage": "https://kodieg.com"
+    }
+  ],
+  "keywords": [
+    "boilerplate",
+    "example",
+    "starter",
+    "template",
+    "wordpress"
+  ],
+  "homepage": "https://github.com/fivefifteen/basis",
+  "license": "GPL-2.0",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://plugins.fivefifteen.com"
+    },
+    {
+      "type": "composer",
+      "url": "https://connect.advancedcustomfields.com"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "johnpbloch/wordpress-core-installer": true
+    }
+  },
+  "extra": {
+    "wordpress-install-dir": "wordpress",
+    "installer-paths": {
+      "content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "composer run build --working-dir=content/themes/{{BASIS_THEME_NAME}}",
+    "decrypt": [
+      "@decrypt:auth",
+      "@decrypt:deploy"
+    ],
+    "decrypt:auth": "sops -d auth.encrypted.json > auth.json",
+    "decrypt:deploy": "sops --output-type binary -d deploy.encrypted.yml > deploy.yml",
+    "encrypt": [
+      "@encrypt:auth",
+      "@encrypt:deploy"
+    ],
+    "encrypt:auth": "sops -e auth.json > auth.encrypted.json",
+    "encrypt:deploy": "sops --input-type binary -e deploy.yml > deploy.encrypted.yml",
+    "setup": [
+      "@theme:setup"
+    ],
+    "theme:setup": [
+      "composer install --working-dir=content/themes/{{BASIS_THEME_NAME}}",
+      "composer run setup --working-dir=content/themes/{{BASIS_THEME_NAME}}"
+    ]
+  },
+  "require": {
+    "php": ">=8.1",
+    "johnpbloch/wordpress": "6.7.1",
+    "fivefifteen-plugin/tidydash": "0.0.2",
+    "fivefifteen-plugin/whitelist-addon-for-wp-mail-smtp": "0.0.1",
+    "fivefifteen-vendor/gravityforms": "2.9.0.5",
+    "wpengine/advanced-custom-fields-pro": "6.3.11",
+    "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "3.1",
+    "wpackagist-plugin/ajax-thumbnail-rebuild": "1.14",
+    "wpackagist-plugin/safe-redirect-manager": "2.2.1",
+    "wpackagist-plugin/svg-support": "2.5.8",
+    "wpackagist-plugin/updraftplus": "1.24.11",
+    "wpackagist-plugin/wordpress-seo": "24.0",
+    "wpackagist-plugin/wp-mail-smtp": "4.2.0"
+  },
+  "require-dev": {
+    "fivefifteen/primer": "0.0.1",
+    "fivefifteen/wordup": "0.0.2"
+  }
+}

@@ -85,8 +85,8 @@ function get_json($file) {
 function parse_vars($str) {
   global $vars;
 
-  foreach($vars as $var => $value) {
-    $str = str_replace('{{BASIS_' . $var . '}}', $value, $str);
+  foreach($vars as $key => $var) {
+    $str = str_replace('{{BASIS_' . $key . '}}', $var[1], $str);
   }
 
   return $str;
@@ -118,14 +118,14 @@ function write_json($file, $arr) {
 function do_var_prompts() {
   global $vars;
 
-  foreach($vars as $var => &$value) {
-    $default = parse_vars(getenv('BASIS_' . $var) ?? $value[1]);
+  foreach($vars as $key => &$var) {
+    $default = parse_vars(getenv('BASIS_' . $key) ?: $var[1]);
 
-    if (!($response = readline("Enter the {$value[0]} ($default): "))) {
+    if (!($response = readline("Enter the {$var[0]} ($default): "))) {
       $response = $default;
     }
 
-    $value = $response;
+    $var[1] = $response;
   }
 }
 
@@ -197,7 +197,7 @@ function do_json_updating() {
   $composer_json_contents = get_json('composer.json');
   $json_files_updated = false;
   
-  if (!$vars['FIVEFIFTEEN_API_KEY']) {
+  if (!$vars['FIVEFIFTEEN_API_KEY'][1]) {
     $json_files_updated = true;
   
     unset($auth_json_contents['http-basic']['plugins.fivefifteen.com']);
@@ -207,7 +207,7 @@ function do_json_updating() {
     unset($composer_json_contents['require']['fivefifteen-vendor/gravityforms']);
   }
   
-  if (!$vars['ACF_API_KEY']) {
+  if (!$vars['ACF_API_KEY'][1]) {
     $json_files_updated = true;
   
     unset($auth_json_contents['http-basic']['connect.advancedcustomfields.com']);

@@ -1,5 +1,5 @@
 {
-  "name": "{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIC_PROJECT_SLUG}}",
+  "name": "{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIS_PROJECT_SLUG}}",
   "version": "0.0.1",
   "repositories": [
     {

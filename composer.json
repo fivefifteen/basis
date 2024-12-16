@@ -23,6 +23,13 @@
   ],
   "homepage": "https://github.com/fivefifteen/basis",
   "license": "GPL-2.0",
+  "extra": {
+    "installer-paths": {
+      "content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
   "scripts": {
     "post-create-project-cmd": "php setup.php"
   },

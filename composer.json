@@ -27,6 +27,7 @@
     "post-create-project-cmd": "php setup.php"
   },
   "require": {
-    "php": ">=8.1"
+    "php": ">=8.1",
+    "fivefifteen/primer": "0.0.1"
   }
 }

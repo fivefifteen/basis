@@ -1,5 +1,5 @@
 {
-  "name": "{{BASIS_VENDOR_NAME}}/{{BASIC_PROJECT_SLUG}}",
+  "name": "{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIC_PROJECT_SLUG}}",
   "version": "0.0.1",
   "repositories": [
     {
@@ -73,7 +73,6 @@
     "wpackagist-plugin/wp-mail-smtp": "4.2.0"
   },
   "require-dev": {
-    "fivefifteen/primer": "0.0.1",
     "fivefifteen/wordup": "0.0.2"
   }
 }

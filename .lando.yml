@@ -23,7 +23,7 @@ services:
       - composer install --working-dir=/app && composer run setup
   database:
     creds:
-      database: {{BASIS_LOCAL_DATABASE_NAME}} # CONFIG: DATABASE NAME
+      database: {{BASIS_DATABASE_NAME}} # CONFIG: DATABASE NAME
 events:
   post-start:
     - appserver: test -e ~/.ssh/config || printf 'Host *\n  AddKeysToAgent yes\n' > ~/.ssh/config

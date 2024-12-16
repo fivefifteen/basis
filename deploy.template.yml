@@ -7,7 +7,7 @@ config:
   use_atomic_symlink: false
   db/credentials:
     host: database
-    name: {{BASIS_LOCAL_DATABASE_NAME}}
+    name: {{BASIS_DATABASE_NAME}}
     user: root
     pass: ''
   templates/files:
@@ -38,8 +38,7 @@ config:
     WPMS_SENDGRID_DOMAIN: {{BASIS_PRODUCTION_DOMAIN}}
     WPMS_LOGS_ENABLED: true
     WPMS_LOGS_LOG_EMAIL_CONTENT: true
-    WPMS_DOMAIN_WHITELIST:
-      - {{BASIS_EMAIL_WHITELIST_DOMAIN}}
+    WPMS_DOMAIN_WHITELIST: []
     WPMS_EMAIL_WHITELIST: []
 
 hosts:
@@ -47,7 +46,7 @@ hosts:
     hostname: {{BASIS_STAGING_IP}}
     remote_user: {{BASIS_STAGING_USER}}
     branch: {{BASIS_STAGING_BRANCH}}
-    current_path: {{BASIS_PUBLIC_PATH}}
+    current_path: {{BASIS_CURRENT_PATH}}
     db/credentials:
       host: {{BASIS_STAGING_DATABASE_HOST}}
       name: {{BASIS_STAGING_DATABASE_NAME}}
@@ -62,7 +61,7 @@ hosts:
     hostname: {{BASIS_PRODUCTION_IP}}
     remote_user: {{BASIS_PRODUCTION_USER}}
     branch: {{BASIS_PRODUCTION_BRANCH}}
-    current_path: {{BASIS_PUBLIC_PATH}}
+    current_path: {{BASIS_CURRENT_PATH}}
     db/credentials:
       host: {{BASIS_PRODUCTION_DATABASE_HOST}}
       name: {{BASIS_PRODUCTION_DATABASE_NAME}}

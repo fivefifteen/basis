@@ -4,55 +4,38 @@
 /* Config */
 
 $vars = array(
-  'PROJECT_SLUG'              => "project's slug",
-  'PROJECT_NAME'              => "project's name",
-  'PROJECT_VENDOR_SLUG'       => "vendor/author slug of the project",
-  'PROJECT_REPOSITORY'        => "project's git repository URL",
-  'MAIL_FROM'                 => "email address to send emails from",
-  'MAIL_FROM_NAME'            => "name that emails should be sent from",
-  'DATABASE_NAME'             => "name of the local database",
-  'DEPLOY_PATH'               => "remote path that the project should be deployed to",
-  'CURRENT_PATH'              => "remote public path",
-  'STAGING_IP'                => "staging server's IP address",
-  'STAGING_USER'              => "staging server's username",
-  'STAGING_URL'               => "staging URL",
-  'STAGING_DATABASE_HOST'     => "staging server's database host",
-  'STAGING_DATABASE_NAME'     => "staging server's database name",
-  'STAGING_DATABASE_USER'     => "staging server's database username",
-  'STAGING_DATABASE_PASS'     => "staging server's database password",
-  'PRODUCTION_IP'             => "production server's IP address",
-  'PRODUCTION_USER'           => "production server's username",
-  'PRODUCTION_URL'            => "production server's URL",
-  'PRODUCTION_DOMAIN'         => "production server's domain",
-  'PRODUCTION_DATABASE_HOST'  => "production server's database host",
-  'PRODUCTION_DATABASE_NAME'  => "production server's database name",
-  'PRODUCTION_DATABASE_USER'  => "production server's database username",
-  'PRODUCTION_DATABASE_PASS'  => "production server's database password",
-  'GOOGLE_ANALYTICS_ID'       => "production Google Analytics ID",
-  'SOPS_AGE_KEY'              => "SOPS AGE Key",
-  'SENDGRID_API_KEY'          => "SendGrid API Key",
-  'ACF_API_KEY'               => "Advance Cuustom Fields API Key",
-  'FIVEFIFTEEN_API_KEY'       => "Five Fifteen Plugins API Key",
-  'PHP_VERSION'               => "8.2",
-  'COMPOSER_VERSION'          => "2.8.3",
-  'MYSQL_VERSION'             => "8.0.40"
-);
-
-$var_defaults = array(
-  'PROJECT_SLUG'              => 'my-new-website',
-  'PROJECT_NAME'              => 'My New Website',
-  'PROJECT_VENDOR_SLUG'       => 'my-company',
-  'PROJECT_REPOSITORY'        => 'git@github.com:{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIS_PROJECT_SLUG}}.git',
-  'MAIL_FROM_NAME'            => '{{BASIS_PROJECT_SLUG}}',
-  'DATABASE_NAME'             => 'wp_{{BASIS_PROJECT_SLUG}}',
-  'DEPLOY_PATH'               => '/var/www/public_html',
-  'CURRENT_PATH'              => '/var/www/public',
-  'STAGING_DATABASE_HOST'     => '127.0.0.1:3306',
-  'STAGING_DATABASE_NAME'     => '{{DATABASE_NAME}}',
-  'PRODUCTION_DATABASE_HOST'  => '127.0.0.1:3306',
-  'PRODUCTION_DATABASE_NAME'  => '{{DATABASE_NAME}}',
-  'STAGING_USER'              => 'www-data',
-  'PRODUCTION_USER'           => 'www-data'
+  'PROJECT_SLUG'              => array("project's slug", "my-new-website"),
+  'PROJECT_NAME'              => array("project's name", "My New Website"),
+  'PROJECT_VENDOR_SLUG'       => array("vendor/author slug of the project", "my-company"),
+  'PROJECT_REPOSITORY'        => array("project's git repository URL", "git@github.com:{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIS_PROJECT_SLUG}}.git"),
+  'MAIL_FROM'                 => array("email address to send emails from", "my-email@{{BASIS_PROJECT_SLUG}}.com"),
+  'MAIL_FROM_NAME'            => array("name that emails should be sent from", "{{BASIS_PROJECT_SLUG}}"),
+  'DATABASE_NAME'             => array("name of the local database", "wp_{{BASIS_PROJECT_SLUG}}"),
+  'DEPLOY_PATH'               => array("remote path that the project should be deployed to", "/var/www/public_html"),
+  'CURRENT_PATH'              => array("remote public path", "/var/www/public"),
+  'STAGING_IP'                => array("staging server's IP address", '123.456.789.100'),
+  'STAGING_USER'              => array("staging server's username", "www-data"),
+  'STAGING_URL'               => array("staging URL", "https://staging.{{BASIS_PROJECT_SLUG}}.com"),
+  'STAGING_DATABASE_HOST'     => array("staging server's database host", "127.0.0.1:3306"),
+  'STAGING_DATABASE_NAME'     => array("staging server's database name", "{{DATABASE_NAME}}"),
+  'STAGING_DATABASE_USER'     => array("staging server's database username", "user"),
+  'STAGING_DATABASE_PASS'     => array("staging server's database password", "pass"),
+  'PRODUCTION_IP'             => array("production server's IP address", "123.456.789.100"),
+  'PRODUCTION_USER'           => array("production server's username", "www-data"),
+  'PRODUCTION_URL'            => array("production server's URL", "https://{{BASIS_PROJECT_SLUG}}.com"),
+  'PRODUCTION_DOMAIN'         => array("production server's domain", "{{BASIS_PROJECT_SLUG}}.com"),
+  'PRODUCTION_DATABASE_HOST'  => array("production server's database host", "127.0.0.1:3306"),
+  'PRODUCTION_DATABASE_NAME'  => array("production server's database name", "{{DATABASE_NAME}}"),
+  'PRODUCTION_DATABASE_USER'  => array("production server's database username", "user"),
+  'PRODUCTION_DATABASE_PASS'  => array("production server's database password", "pass"),
+  'GOOGLE_ANALYTICS_ID'       => array("production Google Analytics ID", ""),
+  'SOPS_AGE_KEY'              => array("SOPS AGE Key", ""),
+  'SENDGRID_API_KEY'          => array("SendGrid API Key", ""),
+  'ACF_API_KEY'               => array("Advance Cuustom Fields API Key", ""),
+  'FIVEFIFTEEN_API_KEY'       => array("Five Fifteen Plugins API Key", ""),
+  'PHP_VERSION'               => array("desired PHP version", "8.2"),
+  'COMPOSER_VERSION'          => array("desired Composer version", "2.8.3"),
+  'MYSQL_VERSION'             => array("desired MySql version", "8.0.40")
 );
 
 $file_process_list = array(
@@ -134,18 +117,11 @@ function write_json($file, $arr) {
 
 function do_var_prompts() {
   global $vars;
-  global $var_defaults;
 
   foreach($vars as $var => &$value) {
-    if (!($default = getenv('BASIS_' . $var))) {
-      if (isset($var_defaults[$var])) {
-        $default = parse_vars($var_defaults[$var]);
-      } else {
-        $default = '';
-      }
-    }
+    $default = getenv('BASIS_' . $var) ?: $value[1];
 
-    if (!($response = readline("Enter the $value ($default): "))) {
+    if (!($response = readline("Enter the {$value[0]} ($default): "))) {
       $response = $default;
     }
 

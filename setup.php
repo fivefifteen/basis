@@ -119,7 +119,7 @@ function do_var_prompts() {
   global $vars;
 
   foreach($vars as $var => &$value) {
-    $default = getenv('BASIS_' . $var) ?: $value[1];
+    $default = parse_vars(getenv('BASIS_' . $var) ?: $value[1]);
 
     if (!($response = readline("Enter the {$value[0]} ($default): "))) {
       $response = $default;

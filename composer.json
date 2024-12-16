@@ -28,6 +28,6 @@
   },
   "require": {
     "php": ">=8.1",
-    "fivefifteen/primer": "0.0.1"
+    "fivefifteen/primer": "dev-main"
   }
 }

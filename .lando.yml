@@ -43,7 +43,7 @@ events:
 tooling:
   build:
     service: appserver
-    description: Compiles/minifies SCSS and JS files
+    description: Compiles/minifies the theme's JavaScript & CSS/SCSS files
     cmd: composer build
   composer:
     service: appserver
@@ -59,7 +59,7 @@ tooling:
     cmd: composer run
   ssh-fix:
     service: appserver
-    description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.
+    description: Fixes ssh auth sock permissions for MacOS users - `lando rebuild` fixes the problem as well
     cmd: "/bin/chgrp www-data /run/host-services/ssh-auth.sock && /bin/chmod g+w /run/host-services/ssh-auth.sock"
     user: root
   theme:

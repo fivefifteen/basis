@@ -107,7 +107,7 @@ function write($str) {
 
 function write_json($file, $arr) {
   write("Updating {$file}...");
-  return file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+  return file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_FORCE_OBJECT));
 }
 
 

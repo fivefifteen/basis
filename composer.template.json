@@ -75,6 +75,6 @@
     "wpackagist-plugin/wp-mail-smtp": "4.2.0"
   },
   "require-dev": {
-    "fivefifteen/wordup": "0.0.2"
+    "fivefifteen/wordup": "0.0.3"
   }
 }

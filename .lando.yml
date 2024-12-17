@@ -62,6 +62,10 @@ tooling:
     description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.
     cmd: "/bin/chgrp www-data /run/host-services/ssh-auth.sock && /bin/chmod g+w /run/host-services/ssh-auth.sock"
     user: root
+  theme:
+    service: appserver
+    description: Runs composer commands in the theme directory
+    cmd: composer run theme
   wp:
     service: appserver
     description: Runs WP-CLI Commands

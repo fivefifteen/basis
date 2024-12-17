@@ -52,12 +52,10 @@
     "setup": [
       "vendor/bin/dep wp:config:create localhost",
       "vendor/bin/dep templates:render localhost",
-      "@theme:setup"
+      "@theme install",
+      "@theme run setup"
     ],
-    "theme:setup": [
-      "composer install --working-dir=content/themes/{{BASIS_PROJECT_SLUG}}",
-      "composer run setup --working-dir=content/themes/{{BASIS_PROJECT_SLUG}}"
-    ]
+    "theme": "composer --working-dir=content/themes/{{BASIS_PROJECT_SLUG}} --"
   },
   "require": {
     "php": ">=8.1",

@@ -51,8 +51,12 @@ tooling:
     cmd: composer
   dep:
     service: appserver
-    description: Runs Deployer commands (Simply run `lando dep` for a list of available commands)
+    description: Runs Deployer commands (Run `lando dep` for a list of available commands)
     cmd: vendor/bin/dep -vvv
+  run:
+    service: appserver
+    description: Runs a script from composer.json's `scripts` section
+    cmd: composer run
   ssh-fix:
     service: appserver
     description: Fix ssh auth sock permission for MacOS users. Lando rebuild fixes the problem as well.

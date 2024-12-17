@@ -150,6 +150,8 @@ function do_file_deletion() {
   global $file_delete_list;
 
   foreach($file_delete_list as $file_path) {
+    $file_path = parse_vars($file_path);
+
     if (file_exists($file_path)) {
       write("Deleting $file_path...");
 
@@ -228,6 +230,7 @@ write('| |_) | __ _ ___ _ ___  ');
 write('|  _ < / _` / __| / __| ');
 write('| |_) | (_| \__ \ \__ \ ');
 write('|____/ \__,_|___/_|___/ ');
+write('');
 
 /* Perform Actions */
 

@@ -4,8 +4,8 @@
 /* Config */
 
 $vars = array(
-  'PROJECT_SLUG'              => array("project's slug", "my-new-website"),
-  'PROJECT_NAME'              => array("project's name", "My New Website"),
+  'PROJECT_SLUG'              => array("project's slug", basename(dirname(__FILE__))),
+  'PROJECT_NAME'              => array("project's name", "My New WordPress Website"),
   'PROJECT_VENDOR_SLUG'       => array("vendor/author slug of the project", "my-company"),
   'PROJECT_REPOSITORY'        => array("project's git repository URL", "git@github.com:{{BASIS_PROJECT_VENDOR_SLUG}}/{{BASIS_PROJECT_SLUG}}.git"),
   'MAIL_FROM'                 => array("email address to send emails from", "my-email@{{BASIS_PROJECT_SLUG}}.com"),
@@ -227,7 +227,7 @@ function do_json_updating() {
 
 /* Logo */
 
-write(' ____            _     ');
+write(' ____            _      ');
 write('|  _ \          (_)     ');
 write('| |_) | __ _ ___ _ ___  ');
 write('|  _ < / _` / __| / __| ');

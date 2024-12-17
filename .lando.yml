@@ -9,7 +9,7 @@ services:
     overrides:
       environment:
         SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
-        SOPS_AGE_KEY_FILE: '$HOME/.config/sops/age/keys.txt'
+        SOPS_AGE_KEY_FILE: /var/www/.config/sops/age/keys.txt
         SOPS_VERSION: '3.9.2' # CONFIG: SOPS VERSION
       volumes:
         # Binds local SSH agent

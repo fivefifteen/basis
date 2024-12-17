@@ -9,17 +9,28 @@ services:
     overrides:
       environment:
         SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
+        SOPS_AGE_KEY_FILE: '$HOME/.config/sops/age/keys.txt'
+        SOPS_VERSION: '3.9.2' # CONFIG: SOPS VERSION
       volumes:
+        # Binds local SSH agent
+        # Linux users: add 'export LANDO_SSH_AUTH_SOCK="${SSH_AUTH_SOCK}"' to the end of your ~/.bashrc
         - type: bind
-          # Linux users: add 'export LANDO_SSH_AUTH_SOCK="${SSH_AUTH_SOCK}"' at the end of your ~/.bashrc
-          source: "${LANDO_SSH_AUTH_SOCK:-/run/host-services/ssh-auth.sock}"
+          source: '${LANDO_SSH_AUTH_SOCK:-/run/host-services/ssh-auth.sock}'
           target: /run/host-services/ssh-auth.sock
+        # Binds local SOPS keys.txt file
+        - type: bind
+          source: '${SOPS_AGE_KEY_FILE:-$HOME/.config/sops/age/keys.txt}'
+          target: /var/www/.config/sops/age/keys.txt
     build_as_root:
-      # Fix ssh-auth.sock permissions
+      # Fixes ssh-auth.sock permissions
       - chown www-data:www-data /run/host-services/ssh-auth.sock
       - chmod g+w /run/host-services/ssh-auth.sock
+      # Installs SOPS
+      - curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64
+      - mv sops-v${SOPS_VERSION}.linux.amd64 /usr/local/bin/sops
+      - chmod +x /usr/local/bin/sops
     build:
-      # Install Composer dependencies and run the post-install/build scripts
+      # Installs Composer dependencies and run the post-install/build scripts
       - composer install --working-dir=/app && composer run setup
   database:
     creds:

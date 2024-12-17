@@ -18,19 +18,12 @@
 
 ## Table of Contents
 
-- [Requirements](#requirements)
 - [Features](#features)
+- [Requirements](#requirements)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Related Projects](#related-projects)
 - [License Information](#license-information)
-
-
-## Requirements
-
-- [PHP] 8.1 or above
-- [Composer]
-- [Lando]
 
 
 ## Features
@@ -46,6 +39,13 @@
     - JavaScript & CSS/SCSS compilation/minification via [Piler]
     - [and more...](https://github.com/fivefifteen/primer)
 - All of the above in a single command 👌
+
+
+## Requirements
+
+- [PHP] 8.1 or above
+- [Composer]
+- [Lando]
 
 
 ## Usage

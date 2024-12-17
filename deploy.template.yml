@@ -1,6 +1,6 @@
 config:
   application: {{BASIS_PROJECT_SLUG}}
-  repository: {{BASIS_PROJECT_REPO}}
+  repository: {{BASIS_PROJECT_REPOSITORY}}
   current_path: /app
   deploy_path: {{BASIS_DEPLOY_PATH}}
   bin/composer: /usr/bin/composer

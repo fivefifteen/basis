@@ -57,6 +57,17 @@
     ],
     "theme": "composer --working-dir=content/themes/{{BASIS_PROJECT_SLUG}} --"
   },
+  "scripts-descriptions": {
+    "build": "Compiles/minifies JavaScript & CSS/SCSS files for the theme",
+    "decrypt": "Decrypts encrypted configuration files",
+    "decrypt:auth": "Decrypts auth.encrypted.json",
+    "decrypt:deploy": "Decrypts deploy.encrypted.yml",
+    "encrypt": "Encrypts configuration files",
+    "encrypt:auth": "Encrypts auth.json",
+    "encrypt:deploy": "Encrypts deploy.yml",
+    "setup": "Generates configuration files and runs theme setup scripts",
+    "theme": "Runs composer commands in the theme directory"
+  },
   "require": {
     "php": ">=8.1",
     "johnpbloch/wordpress": "6.7.1",

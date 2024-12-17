@@ -20,6 +20,7 @@ config:
     - '{{release_or_current_path}}/vendor/autoload.php'
   wp/config/constants: &default_wp_config_constants
     WP_ENVIRONMENT_TYPE: development
+    WP_DEFAULT_THEME: {{BASIS_PROJECT_SLUG}}
     WP_AUTO_UPDATE_CORE: false
     WP_DEBUG: true
     WP_DEBUG_DISPLAY: false

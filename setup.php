@@ -54,7 +54,6 @@ $file_delete_list = array(
   'license.md',
   'readme.md',
   'setup.php',
-  'content/themes/primer/.git',
   'content/themes/primer/license.md',
 );
 
@@ -234,6 +233,9 @@ write('|____/ \__,_|___/_|___/ ');
 /* Perform Actions */
 
 do_var_prompts();
+
+system(parse_vars('composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}} --no-install --stability dev'));
+
 do_file_processing();
 do_file_deletion();
 do_file_renaming();
@@ -241,5 +243,7 @@ do_json_updating();
 
 write('Done!');
 
-system('composer install');
+system('./vendor/bin/dep templates:render localhost');
+system('./vendor/bin/dep wp:config:create localhost');
+system('lando start');
 ?>

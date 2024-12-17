@@ -23,24 +23,10 @@
   ],
   "homepage": "https://github.com/fivefifteen/basis",
   "license": "GPL-2.0",
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true
-    }
-  },
-  "extra": {
-    "installer-paths": {
-      "content/themes/{$name}/": [
-        "type:wordpress-theme"
-      ]
-    }
-  },
   "scripts": {
     "post-create-project-cmd": "php setup.php"
   },
   "require": {
-    "php": ">=8.1",
-    "composer/installers": "^2.3",
-    "fivefifteen/primer": "dev-main"
+    "php": ">=8.1"
   }
 }

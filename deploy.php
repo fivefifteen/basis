@@ -13,7 +13,7 @@ use function \Deployer\{
   upload
 };
 
-set('basis/theme_path', 'content/themes/{{BASIS_PROJECT_SLUG}}');
+set('basis/theme_path', 'content/themes/{{application}}');
 
 set('basis/compiled_files', array(
   '{{basis/theme_path}}/js/scripts.min.js',

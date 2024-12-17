@@ -36,7 +36,7 @@
     }
   },
   "scripts": {
-    "build": "composer run build --working-dir=content/themes/{{BASIS_THEME_NAME}}",
+    "build": "composer run build --working-dir=content/themes/{{BASIS_PROJECT_SLUG}}",
     "decrypt": [
       "@decrypt:auth",
       "@decrypt:deploy"
@@ -55,8 +55,8 @@
       "@theme:setup"
     ],
     "theme:setup": [
-      "composer install --working-dir=content/themes/{{BASIS_THEME_NAME}}",
-      "composer run setup --working-dir=content/themes/{{BASIS_THEME_NAME}}"
+      "composer install --working-dir=content/themes/{{BASIS_PROJECT_SLUG}}",
+      "composer run setup --working-dir=content/themes/{{BASIS_PROJECT_SLUG}}"
     ]
   },
   "require": {

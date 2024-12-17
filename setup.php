@@ -107,9 +107,10 @@ function write($str) {
   echo $str . "\n";
 }
 
-function write_json($file, $arr) {
+function write_json($file, $arr, $force_object = false) {
   write("Updating {$file}...");
-  return file_put_contents($file, json_encode($arr, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_FORCE_OBJECT));
+  $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | ($force_object ? JSON_FORCE_OBJECT : null);
+  return file_put_contents($file, json_encode($arr, $flags));
 }
 
 
@@ -198,27 +199,27 @@ function do_json_updating() {
   $auth_json_contents = get_json('auth.json');
   $composer_json_contents = get_json('composer.json');
   $json_files_updated = false;
-  
+
   if (!$vars['FIVEFIFTEEN_API_KEY'][1]) {
     $json_files_updated = true;
-  
+
     unset($auth_json_contents['http-basic']['plugins.fivefifteen.com']);
     unset($composer_json_contents['repositories'][1]);
     unset($composer_json_contents['require']['fivefifteen-plugin/tidydash']);
     unset($composer_json_contents['require']['fivefifteen-plugin/whitelist-addon-for-wp-mail-smtp']);
     unset($composer_json_contents['require']['fivefifteen-vendor/gravityforms']);
   }
-  
+
   if (!$vars['ACF_API_KEY'][1]) {
     $json_files_updated = true;
-  
+
     unset($auth_json_contents['http-basic']['connect.advancedcustomfields.com']);
     unset($composer_json_contents['repositories'][2]);
     unset($composer_json_contents['require']['wpengine/advanced-custom-fields-pro']);
   }
-  
+
   if ($json_files_updated) {
-    write_json('auth.json', $auth_json_contents);
+    write_json('auth.json', $auth_json_contents, true);
     write_json('composer.json', $composer_json_contents);
   }
 }

@@ -73,8 +73,8 @@ lando dep uploads:pull staging
 | `lando theme` | Runs composer commands in the theme directory |
 | `lando theme install` | Installs the theme dependencies |
 | `lando theme run` | Runs a script from the theme's composer.json's `scripts` section |
-| `lando theme run fetcher` | Displays a list of available [Fetcher] commands |
-| `lando theme run fetcher install [...dependencies]` | Installs theme dependencies from [GitHub] or [npm] |
+| `lando theme fetcher` | Displays a list of available [Fetcher] commands |
+| `lando theme fetcher install [...dependencies]` | Installs theme dependencies from [GitHub] or [npm] |
 | `lando ssh` | Run commands inside of the container |
 | `lando ssh-fix` | Fixes ssh auth sock permissions for MacOS users |
 | `lando start` | Starts your app |

@@ -54,15 +54,14 @@ $file_delete_list = array(
   'license.md',
   'readme.md',
   'setup.php',
-  'content/themes/primer/license.md',
+  'content/themes/{{BASIS_PROJECT_SLUG}}/license.md',
 );
 
 $file_rename_list = array(
   'auth.template.json'      => 'auth.json',
   'composer.template.json'  => 'composer.json',
   'deploy.template.yml'     => 'deploy.yml',
-  'readme.template.md'      => 'readme.md',
-  'content/themes/primer'   => '{{BASIS_PROJECT_SLUG}}'
+  'readme.template.md'      => 'readme.md'
 );
 
 
@@ -243,7 +242,5 @@ do_json_updating();
 
 write('Done!');
 
-system('./vendor/bin/dep templates:render localhost');
-system('./vendor/bin/dep wp:config:create localhost');
 system('lando start');
 ?>

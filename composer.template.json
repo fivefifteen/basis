@@ -50,6 +50,8 @@
     "encrypt:auth": "sops -e auth.json > auth.encrypted.json",
     "encrypt:deploy": "sops --input-type binary -e deploy.yml > deploy.encrypted.yml",
     "setup": [
+      "vendor/bin/dep wp:config:create localhost",
+      "vendor/bin/dep templates:render localhost",
       "@theme:setup"
     ],
     "theme:setup": [

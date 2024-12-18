@@ -1,6 +1,6 @@
 {
   "name": "fivefifteen/basis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A WordPress boilerplate. Get a local dockerized WordPress project up and running complete with secrets encryption, dependency management/compilation, and more by running a single command.",
   "authors": [
     {

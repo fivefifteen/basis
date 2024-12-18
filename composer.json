@@ -23,6 +23,9 @@
   ],
   "homepage": "https://github.com/fivefifteen/basis",
   "license": "GPL-2.0",
+  "config": {
+    "process-timeout": 0
+  },
   "scripts": {
     "post-create-project-cmd": "php setup.php"
   },

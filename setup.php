@@ -239,7 +239,7 @@ write('');
 
 do_var_prompts();
 
-system(parse_vars('composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}} --no-install --stability dev'));
+system(parse_vars('composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}} --no-install'));
 
 do_file_processing();
 do_file_deletion();

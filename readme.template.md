@@ -72,7 +72,6 @@ lando dep uploads:pull staging
 | `lando run encrypt:<auth\|deploy>` | Encrypts `auth.encrypted.json` or `deploy.encrypted.yml` |
 | `lando theme` | Runs composer commands in the theme directory |
 | `lando theme install` | Installs the theme dependencies |
-| `lando theme run` | Runs a script from the theme's composer.json's `scripts` section |
 | `lando theme fetcher` | Displays a list of available [Fetcher] commands |
 | `lando theme fetcher install [...dependencies]` | Installs theme dependencies from [GitHub] or [npm] |
 | `lando theme watch` | Watches for changes to JavaScript & CSS/SCSS files and recompiles/minifies as needed |

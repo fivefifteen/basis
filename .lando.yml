@@ -65,7 +65,7 @@ tooling:
   theme:
     service: appserver
     description: Runs composer commands in the theme directory
-    cmd: composer run theme
+    cmd: composer theme
   wp:
     service: appserver
     description: Runs WP-CLI Commands

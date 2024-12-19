@@ -20,7 +20,7 @@ This is a WordPress website created with [Basis].
 Also:
 
 - Your SSH key added to the staging and production servers in order to fetch the database/uploads as well as deploy
-- The AGE key used to encrypt the configuration files placed in `~/.config/sops/age/keys.txt` on your machine in order to decrypt those files
+- The AGE private key used to encrypt the configuration files placed in `~/.config/sops/age/keys.txt` on your machine in order to decrypt those files
 
 
 ## Setup

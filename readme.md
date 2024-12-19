@@ -68,7 +68,7 @@ See your site's newly generated [readme.md](readme.template.md) on what to do fr
 The default values for any of the questions that are asked by the [setup script](setup.php) can be configured by setting an environment variable with the `BASIS_` prefix:
 
 ```sh
-export BASIS_SOPS_AGE_KEY="age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p"
+export BASIS_SOPS_AGE_PUBLIC_KEY="age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p"
 ```
 
 

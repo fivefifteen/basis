@@ -75,11 +75,13 @@ lando dep uploads:pull staging
 | `lando theme run` | Runs a script from the theme's composer.json's `scripts` section |
 | `lando theme fetcher` | Displays a list of available [Fetcher] commands |
 | `lando theme fetcher install [...dependencies]` | Installs theme dependencies from [GitHub] or [npm] |
+| `lando theme watch` | Watches for changes to JavaScript & CSS/SCSS files and recompiles/minifies as needed |
 | `lando ssh` | Run commands inside of the container |
 | `lando ssh-fix` | Fixes ssh auth sock permissions for MacOS users |
 | `lando start` | Starts your app |
 | `lando stop` | Stops your app |
 | `lando wp` | Displays a list of available [WP-CLI] commands |
+
 
 ## Useful Links
 

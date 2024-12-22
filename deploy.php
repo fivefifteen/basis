@@ -16,8 +16,7 @@ use function \Deployer\{
 set('basis/theme_path', 'content/themes/{{application}}');
 
 set('basis/compiled_files', array(
-  '{{basis/theme_path}}/js/scripts.min.js',
-  '{{basis/theme_path}}/admin.css',
+  '{{basis/theme_path}}/scripts.js',
   '{{basis/theme_path}}/style.css'
 ));
 
@@ -26,8 +25,7 @@ task('basis:auth:push', function () {
 });
 
 task('basis:build', function () {
-  runLocally('composer run fetch');
-  runLocally('composer run build');
+  runLocally('composer theme setup');
   upload(get('basis/compiled_files'), '{{release_path}}', array('flags' => '-azPR'));
 });
 

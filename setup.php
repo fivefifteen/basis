@@ -205,6 +205,8 @@ function do_json_updating() {
 
     unset($auth_json_contents['http-basic']['plugins.fivefifteen.com']);
     unset($composer_json_contents['repositories'][1]);
+    unset($composer_json_contents['require']['fivefifteen-plugin/flexible-content-modules']);
+    unset($composer_json_contents['require']['fivefifteen-plugin/guidebook']);
     unset($composer_json_contents['require']['fivefifteen-plugin/tidydash']);
     unset($composer_json_contents['require']['fivefifteen-plugin/whitelist-addon-for-wp-mail-smtp']);
     unset($composer_json_contents['require']['fivefifteen-vendor/gravityforms']);

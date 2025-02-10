@@ -46,7 +46,8 @@ $file_process_list = array(
   'auth.template.json',
   'composer.template.json',
   'deploy.template.yml',
-  'readme.template.md'
+  'readme.template.md',
+  'reloader.php',
 );
 
 $file_delete_list = array(

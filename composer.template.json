@@ -19,7 +19,8 @@
     "allow-plugins": {
       "composer/installers": true,
       "johnpbloch/wordpress-core-installer": true
-    }
+    },
+    "process-timeout": 0
   },
   "extra": {
     "wordpress-install-dir": "wordpress",

@@ -236,11 +236,11 @@ function do_theme_data_updating() {
     $theme_data = file_get_contents($theme_stylesheet, false, null, 0, 8 * 1024);
 
     if ($theme_name) {
-      $theme_data = preg_replace('/^\s*Theme Name:\s*(.*)$/', $theme_name, $theme_data);
+      $theme_data = preg_replace('/(Theme Name:\s*)(.*)/', "$1{$theme_name}", $theme_data);
     }
 
     if ($theme_description) {
-      $theme_data = preg_replace('/^\s*Description:\s*(.*)$/', $theme_description, $theme_data);
+      $theme_data = preg_replace('/(Description:\s*)(.*)/', "$1{$theme_description}", $theme_data);
     }
 
     write('Updating theme data...');

@@ -246,6 +246,7 @@ $primer_version = getenv('BASIS_PRIMER_VERSION') ?: null;
 $theme_install_cmd = getenv('BASIS_THEME_INSTALL_CMD');
 
 if (!$theme_install_cmd) {
+  if ($primer_version) $primer_version = " \"{$primer_version}\"";
   $theme_install_cmd = "composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}}{$primer_version} --no-install";
 }
 

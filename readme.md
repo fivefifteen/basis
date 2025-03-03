@@ -22,6 +22,7 @@
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [Development](#development)
 - [Related Projects](#related-projects)
 - [License Information](#license-information)
 
@@ -69,6 +70,15 @@ The default values for any of the questions that are asked by the [setup script]
 
 ```sh
 export BASIS_SOPS_AGE_PUBLIC_KEY="age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p"
+```
+
+
+## Development
+
+To create a project for testing using the latest development versions of both Basis and Primer, use the following command:
+
+```sh
+export BASIS_PRIMER_VERSION=dev-development; composer create-project fivefifteen/basis my-new-website dev-development
 ```
 
 

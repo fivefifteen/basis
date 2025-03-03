@@ -243,7 +243,7 @@ function do_theme_data_updating() {
       $theme_data = preg_replace('/(Description:\s*)(.*)/', "$1{$theme_description}", $theme_data);
     }
 
-    write('Updating theme data...');
+    write("Updating theme data in {$theme_stylesheet}...");
     file_put_contents($theme_stylesheet, $theme_data);
   }
 }

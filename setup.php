@@ -228,8 +228,10 @@ function do_json_updating() {
 }
 
 function do_theme_data_updating() {
-  $theme_name = parse_vars(getenv('BASIS_THEME_DATA_NAME') ?: parse_vars('{{BASIS_PROJECT_NAME}}'));
+  $theme_name = parse_vars(getenv('BASIS_THEME_DATA_NAME') ?: '');
   $theme_description = parse_vars(getenv('BASIS_THEME_DATA_DESCRIPTION') ?: '');
+  $theme_author = parse_vars(getenv('BASIS_THEME_DATA_AUTHOR') ?: '');
+  $theme_author_uri = parse_vars(getenv('BASIS_THEME_DATA_AUTHOR_URI') ?: '');
   $theme_stylesheet = parse_vars(getenv('BASIS_THEME_DATA_STYLESHEET') ?: 'content/themes/{{BASIS_PROJECT_SLUG}}/scss/style.scss');
 
   if ($theme_stylesheet && ($theme_name || $theme_description) && file_exists($theme_stylesheet)) {
@@ -241,6 +243,14 @@ function do_theme_data_updating() {
 
     if ($theme_description) {
       $theme_data = preg_replace('/(Description:\s*)(.*)/', "$1{$theme_description}", $theme_data);
+    }
+
+    if ($theme_author) {
+      $theme_data = preg_replace('/(Author:\s*)(.*)/', "$1{$theme_author}", $theme_data);
+    }
+
+    if ($theme_author_uri) {
+      $theme_data = preg_replace('/(Author URI:\s*)(.*)/', "$1{$theme_author_uri}", $theme_data);
     }
 
     write("Updating theme data in {$theme_stylesheet}...");

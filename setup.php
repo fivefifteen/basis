@@ -227,6 +227,27 @@ function do_json_updating() {
   }
 }
 
+function do_theme_data_updating() {
+  $theme_name = parse_vars(getenv('BASIS_THEME_DATA_NAME') ?: parse_vars('{{BASIS_PROJECT_NAME}}'));
+  $theme_description = parse_vars(getenv('BASIS_THEME_DATA_DESCRIPTION') ?: '');
+  $theme_stylesheet = parse_vars(getenv('BASIS_THEME_DATA_STYLESHEET') ?: 'content/themes/{{BASIS_PROJECT_SLUG}}/scss/style.scss');
+
+  if ($theme_stylesheet && ($theme_name || $theme_description) && file_exists($theme_stylesheet)) {
+    $theme_data = file_get_contents($theme_stylesheet, false, null, 0, 8 * 1024);
+
+    if ($theme_name) {
+      $theme_data = preg_replace('/^\s*Theme Name:\s*(.*)$/', $theme_name, $theme_data);
+    }
+
+    if ($theme_description) {
+      $theme_data = preg_replace('/^\s*Description:\s*(.*)$/', $theme_description, $theme_data);
+    }
+
+    write('Updating theme data...');
+    file_put_contents($theme_stylesheet, $theme_data);
+  }
+}
+
 
 /* Logo */
 
@@ -242,15 +263,27 @@ write('');
 
 do_var_prompts();
 
-$primer_version = getenv('BASIS_PRIMER_VERSION') ?: null;
 $theme_install_cmd = getenv('BASIS_THEME_INSTALL_CMD');
+$post_theme_install_cmd = getenv('BASIS_POST_THEME_INSTALL_CMD');
+$primer_version = getenv('BASIS_PRIMER_VERSION') ?: null;
+$using_primer = !$theme_install_cmd || $primer_version;
 
 if (!$theme_install_cmd) {
   if ($primer_version) $primer_version = " \"{$primer_version}\"";
   $theme_install_cmd = "composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}}{$primer_version} --no-install";
 }
 
+write('Installing theme...');
 system(parse_vars($theme_install_cmd));
+
+if ($using_primer) {
+  do_theme_data_updating();
+}
+
+if ($post_theme_install_cmd) {
+  write('Running post theme install command...');
+  system(parse_vars($post_theme_install_cmd));
+}
 
 do_file_processing();
 do_file_deletion();
@@ -259,6 +292,21 @@ do_json_updating();
 
 write('Done!');
 
-system('git init');
-system('lando start');
+if (!getenv('BASIS_NO_GIT_INIT')) {
+  system('git init');
+}
+
+if ($post_setup_cmd = getenv('BASIS_POST_SETUP_CMD')) {
+  write('Running post setup command...');
+  system(parse_vars($post_setup_cmd));
+}
+
+if (!getenv('BASIS_NO_START')) {
+  system('lando start');
+}
+
+if ($post_start_cmd = getenv('BASIS_POST_START_CMD')) {
+  write('Running post start command...');
+  system(parse_vars($post_start_cmd));
+}
 ?>

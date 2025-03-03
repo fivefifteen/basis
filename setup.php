@@ -290,10 +290,10 @@ if ($using_primer) {
   do_theme_data_updating();
 
   if ($vars['FIVEFIFTEEN_API_KEY'][1]) {
-    $theme_path = parse_vars('content/themes/{{BASIS_PROJECT_SLUG}}');
-    write("Creating {$theme_path}/flex-modules...");
-    mkdir("{$theme_path}/flex-modules", 0755);
-    touch("{$theme_path}/flex-modules/.gitkeep");
+    $flex_modules_path = parse_vars('content/themes/{{BASIS_PROJECT_SLUG}}/flex-modules');
+    write("Creating {$flex_modules_path}...");
+    mkdir($flex_modules_path, 0755);
+    touch("{$flex_modules_path}/.gitkeep");
   }
 }
 

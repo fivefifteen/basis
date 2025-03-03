@@ -242,12 +242,18 @@ write('');
 
 do_var_prompts();
 
-system(parse_vars('composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}} --no-install'));
+$branch = trim(shell_exec('git branch --show-current'));
+$development = $branch === 'development';
+$version_tag = $development ? ' "dev-development"' : null;
+
+system(parse_vars("composer create-project fivefifteen/primer content/themes/{{BASIS_PROJECT_SLUG}}{$version_tag} --no-install"));
 
 do_file_processing();
 do_file_deletion();
 do_file_renaming();
 do_json_updating();
+
+system('git init');
 
 write('Done!');
 

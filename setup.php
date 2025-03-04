@@ -295,6 +295,13 @@ if ($using_primer) {
     mkdir($flex_modules_path, 0755);
     touch("{$flex_modules_path}/.gitkeep");
   }
+
+  if ($vars['ACF_API_KEY'][1]) {
+    $acf_json_path = parse_vars('content/themes/{{BASIS_PROJECT_SLUG}}/acf-json');
+    write("Creating {$acf_json_path}...");
+    mkdir($acf_json_path, 0755);
+    touch("{$acf_json_path}/.gitkeep");
+  }
 }
 
 if ($post_theme_install_cmd) {

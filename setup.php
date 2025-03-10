@@ -314,7 +314,23 @@ do_file_deletion();
 do_file_renaming();
 do_json_updating();
 
+if (!$vars['FIVEFIFTEEN_API_KEY'][1]) {
+  $lando_yml_filename = '.lando.yml';
+  write("Making one last small edit to {$lando_yml_filename}...");
+  $lando_yml_contents = file_get_contents($lando_yml_filename);
+  $lando_yml_contents = preg_replace('/\s+# Binds local flex-modules[\S\s]+target: \/var\/www\/flex-modules/', '', $lando_yml_contents);
+  file_put_contents($lando_yml_filename, $lando_yml_contents);
+
+  $deploy_yml_filename = 'deploy.yml';
+  write("Making one last small edit to {$deploy_yml_filename}...");
+  $deploy_yml_contents = file_get_contents($deploy_yml_filename);
+  $deploy_yml_contents = preg_replace('/\s+FCM_REPO_PATH: \/var\/www\/flex-modules/', '', $lando_yml_contents);
+  file_put_contents($deploy_yml_filename, $lando_yml_contents);
+}
+
 write('Done!');
+
+/* Post Actions */
 
 if (!getenv('BASIS_NO_GIT_INIT')) {
   system('git init');

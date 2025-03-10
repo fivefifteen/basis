@@ -21,6 +21,10 @@ services:
         - type: bind
           source: '${SOPS_AGE_KEY_FILE:-$HOME/.config/sops/age/keys.txt}'
           target: /var/www/.config/sops/age/keys.txt
+        # Binds local flex-modules repo path for Flexible Content Modules
+        - type: bind
+          source: '${BASIS_FLEX_MODULES_REPO_PATH:-$HOME/flex-modules}'
+          target: /var/www/flex-modules
     build_as_root:
       # Fixes ssh-auth.sock permissions
       - chown www-data:www-data /run/host-services/ssh-auth.sock

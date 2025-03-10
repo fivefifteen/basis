@@ -41,6 +41,7 @@ config:
     WPMS_LOGS_LOG_EMAIL_CONTENT: true
     WPMS_DOMAIN_WHITELIST: []
     WPMS_EMAIL_WHITELIST: []
+    FCM_REPO_PATH: /var/www/flex-modules
 
 hosts:
   staging:

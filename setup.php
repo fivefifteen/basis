@@ -324,7 +324,8 @@ if (!$vars['FIVEFIFTEEN_API_KEY'][1]) {
   $deploy_yml_filename = 'deploy.yml';
   write("Making one last small edit to {$deploy_yml_filename}...");
   $deploy_yml_contents = file_get_contents($deploy_yml_filename);
-  $deploy_yml_contents = preg_replace('/\s+FCM_REPO_PATH: \/var\/www\/flex-modules/', '', $deploy_yml_contents);
+  $deploy_yml_contents = preg_replace('/\s+FCM_REPO_PATH: \S+/', '', $deploy_yml_contents);
+  $deploy_yml_contents = preg_replace('/\s+FCM_SCSS_IMPORTS_FILE: \S+/', '', $deploy_yml_contents);
   file_put_contents($deploy_yml_filename, $deploy_yml_contents);
 }
 

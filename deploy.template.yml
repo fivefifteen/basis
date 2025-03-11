@@ -42,6 +42,7 @@ config:
     WPMS_DOMAIN_WHITELIST: []
     WPMS_EMAIL_WHITELIST: []
     FCM_REPO_PATH: /var/www/flex-modules
+    FCM_SCSS_IMPORTS_FILE: '{{release_or_current_path}}/content/themes/{{BASIS_PROJECT_SLUG}}/scss/style.scss'
 
 hosts:
   staging:

@@ -71,21 +71,21 @@
   },
   "require": {
     "php": ">=8.1",
-    "johnpbloch/wordpress": "6.7.2",
-    "fivefifteen-plugin/flexible-content-modules": "0.1.1",
-    "fivefifteen-plugin/guidebook": "0.0.3",
+    "johnpbloch/wordpress": "6.7.3",
+    "fivefifteen-plugin/flexible-content-modules": "0.2.0",
+    "fivefifteen-plugin/guidebook": "0.0.4",
     "fivefifteen-plugin/tidydash": "0.1.0",
     "fivefifteen-plugin/whitelist-addon-for-wp-mail-smtp": "0.0.1",
-    "fivefifteen-vendor/gravityforms": "2.9.4",
-    "wpengine/advanced-custom-fields-pro": "6.3.12",
-    "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "3.1",
+    "fivefifteen-vendor/gravityforms": "2.9.19",
+    "wpengine/advanced-custom-fields-pro": "6.5.0.1",
+    "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "3.2",
     "wpackagist-plugin/ajax-thumbnail-rebuild": "1.14",
     "wpackagist-plugin/safe-redirect-manager": "2.2.2",
     "wpackagist-plugin/svg-support": "2.5.14",
-    "wpackagist-plugin/updraftplus": "1.25.2",
-    "wpackagist-plugin/user-role-editor": "4.64.4",
-    "wpackagist-plugin/wordpress-seo": "24.5",
-    "wpackagist-plugin/wp-mail-smtp": "4.3.0"
+    "wpackagist-plugin/updraftplus": "1.25.8",
+    "wpackagist-plugin/user-role-editor": "4.64.5",
+    "wpackagist-plugin/wordpress-seo": "26.0",
+    "wpackagist-plugin/wp-mail-smtp": "4.6.0"
   },
   "require-dev": {
     "fivefifteen/wordup": "0.1.0"

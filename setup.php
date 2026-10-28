@@ -36,8 +36,8 @@ $vars = array(
   'ACF_API_KEY'               => array("Advance Custom Fields API Key", ""),
   'FIVEFIFTEEN_API_KEY'       => array("Five Fifteen Plugins API Key", ""),
   'GRAVITYFORMS_LICENSE_KEY'  => array("Gravity Forms license key", ""),
-  'PHP_VERSION'               => array("desired PHP version", "8.2"),
-  'COMPOSER_VERSION'          => array("desired Composer version", "2.8.3"),
+  'PHP_VERSION'               => array("desired PHP version", "8.3"),
+  'COMPOSER_VERSION'          => array("desired Composer version", "2.10.3"),
   'MYSQL_VERSION'             => array("desired MySql version", "8.0.40")
 );
 

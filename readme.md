@@ -44,7 +44,7 @@
 
 ## Requirements
 
-- [PHP] 8.1 or above
+- [PHP] 8.3 or above
 - [Composer]
 - [Lando]
 

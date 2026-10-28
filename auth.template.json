@@ -7,6 +7,10 @@
 		"connect.advancedcustomfields.com": {
 			"username": "{{BASIS_ACF_API_KEY}}",
 			"password": "{{BASIS_PRODUCTION_URL}}"
+		},
+		"composer.gravity.io": {
+			"username": "{{BASIS_GRAVITYFORMS_LICENSE_KEY}}",
+			"password": "{{BASIS_PRODUCTION_URL}}"
 		}
 	}
 }

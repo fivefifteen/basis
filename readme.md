@@ -34,7 +34,7 @@
 - Intergrated deployment solution via [WordUp] & [Deployer]
 - WordPress terminal control via [WP-CLI]
 - WordPress core & plugins management using [Packagist] & [WordPress Packagist] as repositories via [Composer]
-    - (*[Five Fifteen Plugins] & [Advanced Custom Fields] repositories are optionally pre-configured as well*)
+    - (*[Five Fifteen Plugins], [Advanced Custom Fields], & [Gravity Forms] repositories are optionally pre-configured as well*)
 - Theme boilerplate via [Primer]
     - Front-end dependency management using [GitHub] & [npm] as repositories via [Fetcher]
     - JavaScript & CSS/SCSS compilation/minification via [Piler]
@@ -99,6 +99,7 @@ GPL-2.0 (See the [license.md file](license.md) for more info)
 [Docker]: https://docker.com
 [Fetcher]: https://github.com/fivefifteen/fetcher
 [GitHub]: https://github.com
+[Gravity Forms]: https://www.gravityforms.com
 [Five Fifteen Plugins]: https://plugins.fivefifteen.com
 [Lando]: https://lando.dev
 [npm]: https://npmjs.com

@@ -35,6 +35,7 @@ $vars = array(
   'SMTP2GO_API_KEY'           => array("SMTP2GO API Key", ""),
   'ACF_API_KEY'               => array("Advance Custom Fields API Key", ""),
   'FIVEFIFTEEN_API_KEY'       => array("Five Fifteen Plugins API Key", ""),
+  'GRAVITYFORMS_LICENSE_KEY'  => array("Gravity Forms license key", ""),
   'PHP_VERSION'               => array("desired PHP version", "8.2"),
   'COMPOSER_VERSION'          => array("desired Composer version", "2.8.3"),
   'MYSQL_VERSION'             => array("desired MySql version", "8.0.40")
@@ -210,7 +211,6 @@ function do_json_updating() {
     unset($composer_json_contents['require']['fivefifteen-plugin/guidebook']);
     unset($composer_json_contents['require']['fivefifteen-plugin/tidydash']);
     unset($composer_json_contents['require']['fivefifteen-plugin/whitelist-addon-for-wp-mail-smtp']);
-    unset($composer_json_contents['require']['fivefifteen-vendor/gravityforms']);
   }
 
   if (!$vars['ACF_API_KEY'][1]) {
@@ -219,6 +219,14 @@ function do_json_updating() {
     unset($auth_json_contents['http-basic']['connect.advancedcustomfields.com']);
     unset($composer_json_contents['repositories'][2]);
     unset($composer_json_contents['require']['wpengine/advanced-custom-fields-pro']);
+  }
+
+  if (!$vars['GRAVITYFORMS_LICENSE_KEY'][1]) {
+    $json_files_updated = true;
+
+    unset($auth_json_contents['http-basic']['composer.gravity.io']);
+    unset($composer_json_contents['repositories'][3]);
+    unset($composer_json_contents['require']['gravity/gravityforms']);
   }
 
   if ($json_files_updated) {
